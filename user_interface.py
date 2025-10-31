@@ -14,7 +14,9 @@ class UserInterface:
 
     @staticmethod
     def _get_valid_contract_type_input() -> Union[ContractType, str]:
-        prompt = "Enter contract type - (E)mployment, (C)ivil: "
+        prompt = "Enter contract type - " + ", ".join(
+            f"({t.value[0]}){t.value[1:]}" for t in ContractType
+        ) + ": "
 
         try:
             input_contract_type = input(prompt)[0].lower()
